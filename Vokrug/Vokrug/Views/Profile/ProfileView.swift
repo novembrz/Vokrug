@@ -26,11 +26,7 @@ struct ProfileView: View {
     
     var headerView: some View {
         GeometryReader { proxy -> AnyView in
-            let minY = proxy.frame(in: .global).minY
-
-            DispatchQueue.main.async {
-                viewModel.offset = minY
-            }
+            let minY = viewModel.findMinYForOffset(proxy)
             
             return AnyView (
                 ZStack {
@@ -38,7 +34,8 @@ struct ProfileView: View {
                         Image(cover)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: getRect().width, height: minY > 0 ? 180 + minY : 180, alignment: .center)
+                            .frame(width: getRect().width,
+                                   height: minY > 0 ? .coverHeight + minY : .coverHeight, alignment: .center)
                             .cornerRadius(0)
                         
                         BlurView()
@@ -48,11 +45,11 @@ struct ProfileView: View {
                     scrollBarView
                 }
                     .clipped()
-                    .frame(height: minY > 0 ? 180 + minY : nil)
-                    .offset(y: minY > 0 ? -minY : -minY < 80 ? 0 : -minY - 80)
+                    .frame(height: minY > 0 ? .coverHeight + minY : nil)
+                    .offset(y: minY > 0 ? -minY : -minY < .coverOffset ? 0 : -minY - .coverOffset)
             )
         }
-        .frame(height: 180)
+        .frame(height: .coverHeight)
         .zIndex(1)
     }
     
@@ -80,6 +77,7 @@ struct ProfileView: View {
         }
         .padding(.horizontal, 16)
         .offset(y: 120)
+        //.offset(y: 140)
         .offset(y: viewModel.titleOffset > 100 ? 0 : -viewModel.getTitleTextOffset())
         .opacity(viewModel.titleOffset < 100 ? 1 : 0)
     }
@@ -128,6 +126,7 @@ struct ProfileView: View {
             contentView(viewModel.currentTab)
         }
         .zIndex(-viewModel.offset > 80 ? 0 : 1)
+        //.zIndex(-viewModel.offset > 120 ? 0 : 1) // hz x
     }
     
     var avatarView: some View {
@@ -144,9 +143,12 @@ struct ProfileView: View {
                     )
                     .clipShape(Circle())
                     .offset(y: viewModel.offset < 0 ? viewModel.getOffset() - 20 : -20)
+                    //.offset(y: viewModel.offset < 0 ? viewModel.getOffset() - 70 : -70)
                     .scaleEffect(viewModel.getScale())
                     .padding(.top, -25)
                     .padding(.bottom, -20)
+                    //.padding(.top, -25)
+                    //.padding(.bottom, -70)
             }
         }
     }
@@ -179,11 +181,7 @@ struct ProfileView: View {
         .padding(.horizontal, 16)
         .overlay(
             GeometryReader { proxy -> Color in
-                let minY = proxy.frame(in: .global).minY
-                
-                DispatchQueue.main.async {
-                    viewModel.titleOffset = minY
-                }
+                viewModel.findMinYForTitleOffset(proxy)
                 return Color.clear
             }
             .frame(width: 0, height: 0)
@@ -278,12 +276,8 @@ struct ProfileView: View {
                 .background(Color(hex: viewModel.user.backgroundColor))
                 .offset(y: viewModel.tabBarOffset < 90 ? -viewModel.tabBarOffset + 90 : 0)
                 .overlay(
-                    GeometryReader { reader -> Color in
-                        let minY = reader.frame(in: .global).minY
-                        
-                        DispatchQueue.main.async {
-                            viewModel.tabBarOffset = minY
-                        }
+                    GeometryReader { proxy -> Color in
+                        viewModel.findMinYForTabBaOffset(proxy)
                         return Color.clear
                     }
                         .frame(width: 0, height: 0)
@@ -330,6 +324,11 @@ private extension String {
     static let subscribe = "Подписаться"
     static let unsubscribe = "Отписаться"
     static let message = "Сообщение"
+}
+
+private extension CGFloat {
+    static let coverHeight: CGFloat = 180//220 //ex 180
+    static let coverOffset: CGFloat = 80//120 //ex 80
 }
 
 //MARK: - Previews

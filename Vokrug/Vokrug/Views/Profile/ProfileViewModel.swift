@@ -38,7 +38,32 @@ extension ProfileView {
                 return .white
             }
         }
+
+        func findMinYForOffset(_ proxy: GeometryProxy) -> CGFloat {
+            let minY = proxy.frame(in: .global).minY
+
+            DispatchQueue.main.async {
+               self.offset = minY
+            }
+            return minY
+        }
+
+        func findMinYForTitleOffset(_ proxy: GeometryProxy) {
+            let minY = proxy.frame(in: .global).minY
+            
+            DispatchQueue.main.async {
+                self.titleOffset = minY
+            }
+        }
         
+        func findMinYForTabBaOffset(_ proxy: GeometryProxy) {
+            let minY = proxy.frame(in: .global).minY
+            
+            DispatchQueue.main.async {
+                self.tabBarOffset = minY
+            }
+        }
+
         func getTitleTextOffset() -> CGFloat {
             let progress = 20 / titleOffset
             let offset = 60 * (progress > 0  && progress <= 1 ? progress : 1)
