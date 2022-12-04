@@ -11,10 +11,6 @@ struct ProfileView: View {
     @StateObject var viewModel = ProfileViewModel()    
     @Namespace var animation
     
-    @State var offset: CGFloat = 0
-    @State var tabBarOffset: CGFloat = 0
-    @State var titleOffset: CGFloat = 0
-    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 0) {
@@ -33,7 +29,7 @@ struct ProfileView: View {
             let minY = proxy.frame(in: .global).minY
 
             DispatchQueue.main.async {
-                self.offset = minY
+                viewModel.offset = minY
             }
             
             return AnyView (
@@ -46,13 +42,13 @@ struct ProfileView: View {
                             .cornerRadius(0)
                         
                         BlurView()
-                            .opacity(blurViewOpacity())
+                            .opacity(viewModel.blurViewOpacity())
                     }
-                
+
                     scrollBarView
                 }
-                .clipped()
-                .frame(height: minY > 0 ? 180 + minY : nil)
+                    .clipped()
+                    .frame(height: minY > 0 ? 180 + minY : nil)
                     .offset(y: minY > 0 ? -minY : -minY < 80 ? 0 : -minY - 80)
             )
         }
@@ -84,8 +80,8 @@ struct ProfileView: View {
         }
         .padding(.horizontal, 16)
         .offset(y: 120)
-        .offset(y: titleOffset > 100 ? 0 : -getTitleTextOffset())
-        .opacity(titleOffset < 100 ? 1 : 0)
+        .offset(y: viewModel.titleOffset > 100 ? 0 : -viewModel.getTitleTextOffset())
+        .opacity(viewModel.titleOffset < 100 ? 1 : 0)
     }
     
     var subscribeButton: some View {
@@ -127,11 +123,11 @@ struct ProfileView: View {
             profileData
             Rectangle()
                 .foregroundColor(.init(hex: viewModel.user.separatorColor))
-                .frame(width: .infinity, height: 11)
+                .frame(height: 11)
             segmentedMenu
             contentView(viewModel.currentTab)
         }
-        .zIndex(-offset > 80 ? 0 : 1)
+        .zIndex(-viewModel.offset > 80 ? 0 : 1)
     }
     
     var avatarView: some View {
@@ -147,8 +143,8 @@ struct ProfileView: View {
                         viewModel.textColor()
                     )
                     .clipShape(Circle())
-                    .offset(y: offset < 0 ? getOffset() - 20 : -20)
-                    .scaleEffect(getScale())
+                    .offset(y: viewModel.offset < 0 ? viewModel.getOffset() - 20 : -20)
+                    .scaleEffect(viewModel.getScale())
                     .padding(.top, -25)
                     .padding(.bottom, -20)
             }
@@ -186,7 +182,7 @@ struct ProfileView: View {
                 let minY = proxy.frame(in: .global).minY
                 
                 DispatchQueue.main.async {
-                    self.titleOffset = minY
+                    viewModel.titleOffset = minY
                 }
                 return Color.clear
             }
@@ -280,13 +276,13 @@ struct ProfileView: View {
                 }
                 .padding(.top, 20)
                 .background(Color(hex: viewModel.user.backgroundColor))
-                .offset(y: tabBarOffset < 90 ? -tabBarOffset + 90 : 0)
+                .offset(y: viewModel.tabBarOffset < 90 ? -viewModel.tabBarOffset + 90 : 0)
                 .overlay(
                     GeometryReader { reader -> Color in
                         let minY = reader.frame(in: .global).minY
                         
                         DispatchQueue.main.async {
-                            self.tabBarOffset = minY
+                            viewModel.tabBarOffset = minY
                         }
                         return Color.clear
                     }
@@ -316,47 +312,15 @@ struct ProfileView: View {
     
     var feedView: some View {
         VStack(spacing: 18) {
-            
-            //sample tweets
-            TweetView(tweet: "Website : https://kavsoft.dev/\nInstagram : https://www.instagram.com/_kavsoft/", tweetImage: "p5")
-            
-            Divider()
-            
-            ForEach(1...20, id: \.self) { _ in
-                
-                TweetView(tweet: sampleText)
-                
+            ForEach(1...10, id: \.self) { _ in
+                Rectangle()
+                    .frame(height: 50)
                 Divider()
             }
         }
         .padding(.top)
         .zIndex(0)
     }
-    
-    //MARK: - body
-    
-    func getTitleTextOffset() -> CGFloat {
-        let progress = 20 / titleOffset
-        let offset = 60 * (progress > 0  && progress <= 1 ? progress : 1)
-        return offset
-    }
-
-    func getOffset() -> CGFloat {
-        let progress = (-offset / 80) * 20
-        return progress < 20 ? progress : 20
-    }
-    
-    func getScale() -> CGFloat {
-        let progress = -offset / 80
-        let scale = 1.8 - (progress < 1.0 ? progress : 1)
-        return scale < 1 ? scale : 1
-    }
-    
-    func blurViewOpacity() -> Double {
-        let progress  = -(offset + 80) / 150
-        return Double(-offset > 80 ? progress : 0)
-    }
-    
 }
 
 //MARK: - Extensions

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8709C78E293CDA0500683FD0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8709C78D293CDA0500683FD0 /* ProfileView.swift */; };
 		8709C790293CE1F600683FD0 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8709C78F293CE1F600683FD0 /* ProfileViewModel.swift */; };
+		876842C8293D016300AA5C00 /* View + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876842C7293D016300AA5C00 /* View + Extension.swift */; };
 		878C7B51293B9275000D1E17 /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878C7B50293B9275000D1E17 /* BigButton.swift */; };
 		878C7B53293B931D000D1E17 /* SmallBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878C7B52293B931D000D1E17 /* SmallBorderButton.swift */; };
 		878C7B55293B97B4000D1E17 /* SmallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878C7B54293B97B4000D1E17 /* SmallButton.swift */; };
@@ -16,7 +17,6 @@
 		87C76DB4293A8FBC000FA6DD /* VokrugApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C76DB3293A8FBC000FA6DD /* VokrugApp.swift */; };
 		87C76DB8293A8FBC000FA6DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C76DB7293A8FBC000FA6DD /* Assets.xcassets */; };
 		87C76DBB293A8FBC000FA6DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C76DBA293A8FBC000FA6DD /* Preview Assets.xcassets */; };
-		87C76DC2293A93ED000FA6DD /* ProfileView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C76DC1293A93ED000FA6DD /* ProfileView2.swift */; };
 		87C76DC4293A943C000FA6DD /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C76DC3293A943C000FA6DD /* BlurView.swift */; };
 		87C76DCA293A9C86000FA6DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C76DC9293A9C86000FA6DD /* User.swift */; };
 		87C76DCD293AA013000FA6DD /* HexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C76DCC293AA013000FA6DD /* HexColor.swift */; };
@@ -38,6 +38,7 @@
 /* Begin PBXFileReference section */
 		8709C78D293CDA0500683FD0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		8709C78F293CE1F600683FD0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		876842C7293D016300AA5C00 /* View + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Extension.swift"; sourceTree = "<group>"; };
 		878C7B50293B9275000D1E17 /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
 		878C7B52293B931D000D1E17 /* SmallBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallBorderButton.swift; sourceTree = "<group>"; };
 		878C7B54293B97B4000D1E17 /* SmallButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallButton.swift; sourceTree = "<group>"; };
@@ -46,7 +47,6 @@
 		87C76DB3293A8FBC000FA6DD /* VokrugApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VokrugApp.swift; sourceTree = "<group>"; };
 		87C76DB7293A8FBC000FA6DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87C76DBA293A8FBC000FA6DD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		87C76DC1293A93ED000FA6DD /* ProfileView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView2.swift; sourceTree = "<group>"; };
 		87C76DC3293A943C000FA6DD /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		87C76DC9293A9C86000FA6DD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		87C76DCC293AA013000FA6DD /* HexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexColor.swift; sourceTree = "<group>"; };
@@ -100,7 +100,6 @@
 				87C76DB3293A8FBC000FA6DD /* VokrugApp.swift */,
 				87C76DC8293A9C72000FA6DD /* Models */,
 				87C76E0B293B8C4C000FA6DD /* Views */,
-				87C76DC1293A93ED000FA6DD /* ProfileView2.swift */,
 				87C76DCB293AA006000FA6DD /* Extensions */,
 				87C76DD0293B6A65000FA6DD /* Supporting files */,
 				87C76DB9293A8FBC000FA6DD /* Preview Content */,
@@ -142,6 +141,7 @@
 				87C76DCE293B6A2E000FA6DD /* Color + Extension.swift */,
 				87C76DE4293B6AB5000FA6DD /* Font + Extension.swift */,
 				87C76DE7293B6D71000FA6DD /* Image + Extension.swift */,
+				876842C7293D016300AA5C00 /* View + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -275,6 +275,7 @@
 				8709C78E293CDA0500683FD0 /* ProfileView.swift in Sources */,
 				878C7B53293B931D000D1E17 /* SmallBorderButton.swift in Sources */,
 				878C7C55293BB2D8000D1E17 /* TabButtonView.swift in Sources */,
+				876842C8293D016300AA5C00 /* View + Extension.swift in Sources */,
 				87C76DE8293B6D71000FA6DD /* Image + Extension.swift in Sources */,
 				87C76DCF293B6A2E000FA6DD /* Color + Extension.swift in Sources */,
 				87C76DC4293A943C000FA6DD /* BlurView.swift in Sources */,
@@ -282,7 +283,6 @@
 				87C76DCA293A9C86000FA6DD /* User.swift in Sources */,
 				87C76E0E293B8C88000FA6DD /* SmallSpecialButton.swift in Sources */,
 				878C7B51293B9275000D1E17 /* BigButton.swift in Sources */,
-				87C76DC2293A93ED000FA6DD /* ProfileView2.swift in Sources */,
 				8709C790293CE1F600683FD0 /* ProfileViewModel.swift in Sources */,
 				87C76DB4293A8FBC000FA6DD /* VokrugApp.swift in Sources */,
 				878C7B55293B97B4000D1E17 /* SmallButton.swift in Sources */,
