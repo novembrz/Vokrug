@@ -76,8 +76,7 @@ struct ProfileView: View {
             }
         }
         .padding(.horizontal, 16)
-        .offset(y: 120)
-        //.offset(y: 140)
+        .offset(y: 140)
         .offset(y: viewModel.titleOffset > 100 ? 0 : -viewModel.getTitleTextOffset())
         .opacity(viewModel.titleOffset < 100 ? 1 : 0)
     }
@@ -126,7 +125,6 @@ struct ProfileView: View {
             contentView(viewModel.currentTab)
         }
         .zIndex(-viewModel.offset > 80 ? 0 : 1)
-        //.zIndex(-viewModel.offset > 120 ? 0 : 1) // hz x
     }
     
     var avatarView: some View {
@@ -142,13 +140,10 @@ struct ProfileView: View {
                         viewModel.textColor()
                     )
                     .clipShape(Circle())
-                    .offset(y: viewModel.offset < 0 ? viewModel.getOffset() - 20 : -20)
-                    //.offset(y: viewModel.offset < 0 ? viewModel.getOffset() - 70 : -70)
+                    .offset(y: viewModel.offset < 0 ? viewModel.getOffset() - 1 : -1)
                     .scaleEffect(viewModel.getScale())
-                    .padding(.top, -25)
-                    .padding(.bottom, -20)
-                    //.padding(.top, -25)
-                    //.padding(.bottom, -70)
+                    .padding(.top, -55)
+                    .padding(.bottom, -4)
             }
         }
     }
@@ -265,6 +260,7 @@ struct ProfileView: View {
                         HStack(spacing: 0) {
                             ForEach(viewModel.user.segments, id: \.self) { segment in
                                 TabButtonView(title: segment, currentTab: $viewModel.currentTab, animation: animation)
+                                    .padding(.top, 10)
                             }
                         }
                         .animation(.spring(), value: viewModel.currentTab)
@@ -272,9 +268,8 @@ struct ProfileView: View {
                     
                     Divider()
                 }
-                .padding(.top, 20)
                 .background(Color(hex: viewModel.user.backgroundColor))
-                .offset(y: viewModel.tabBarOffset < 90 ? -viewModel.tabBarOffset + 90 : 0)
+                .offset(y: viewModel.tabBarOffset < 100 ? -viewModel.tabBarOffset + 100 : 0)
                 .overlay(
                     GeometryReader { proxy -> Color in
                         viewModel.findMinYForTabBaOffset(proxy)
@@ -327,8 +322,8 @@ private extension String {
 }
 
 private extension CGFloat {
-    static let coverHeight: CGFloat = 180//220 //ex 180
-    static let coverOffset: CGFloat = 80//120 //ex 80
+    static let coverHeight: CGFloat = 220
+    static let coverOffset: CGFloat = 120
 }
 
 //MARK: - Previews

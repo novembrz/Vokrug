@@ -18,7 +18,7 @@ struct TabButtonView: View {
     var body: some View {
         LazyVStack(spacing: 6) {
             Text(title.rawValue)
-                .fontWeight(.semibold)
+                .font(.semiBold(16))
                 .foregroundColor(currentTab == title ? actionColor : .whiteColor())
                 .padding(.horizontal)
             
