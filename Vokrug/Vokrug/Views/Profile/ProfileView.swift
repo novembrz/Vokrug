@@ -153,8 +153,8 @@ struct ProfileView: View {
     //MARK: - profileData
     
     var profileData: some View {
-        VStack(alignment: .center, spacing: 30) {
-            VStack(alignment: .center, spacing: 4) {
+        VStack(alignment: .center, spacing: 0) {
+            VStack(spacing: 0) {
                 if let text = viewModel.user.title.text {
                     Text(text)
                         .font(.bold(40))
@@ -166,16 +166,15 @@ struct ProfileView: View {
                     Text(description)
                         .font(.regular(20))
                         .foregroundColor(.init(hex: viewModel.user.title.color))
+                        .padding(.top, viewModel.user.title.text != nil ? 4 : 14)
                 }
             }
             
-            if viewModel.user.isSubscribe {
-                buttonsForSubscribeUsers
-            } else {
-                buttonsForUnsubscribeUsers
-            }
+            buttonsView
         }
+        .padding(.top, viewModel.user.isAvatarVisible ? 0 : 25)
         .padding(.horizontal, .Constants.horizontalPadding)
+        .padding(.bottom, 8)
         .overlay(
             GeometryReader { proxy -> Color in
                 viewModel.findMinYForTitleOffset(proxy)
@@ -187,6 +186,17 @@ struct ProfileView: View {
     }
     
     //MARK: - Buttons
+    
+    var buttonsView: some View {
+        Group {
+            if viewModel.user.isSubscribe {
+                buttonsForSubscribeUsers
+            } else {
+                buttonsForUnsubscribeUsers
+            }
+        }
+        .padding(.top, viewModel.user.description != nil ? 25 : (viewModel.user.title.text != nil ? 14 : -5))
+    }
     
     var buttonsForSubscribeUsers: some View {
         Group {
