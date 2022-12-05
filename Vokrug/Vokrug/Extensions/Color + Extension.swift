@@ -8,6 +8,11 @@
 import SwiftUI
 
 extension Color {
+    
+    static func globalColor() -> Color { //TODO: USERDEFAULTS
+        return .white
+    }
+    
     static func textColor() -> Color {
         return Color("TextColor")
     }

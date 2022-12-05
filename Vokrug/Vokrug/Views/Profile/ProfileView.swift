@@ -62,20 +62,20 @@ struct ProfileView: View {
                 .aspectRatio(contentMode: .fit)
                 .fontWeight(.bold)
                 .frame(height: 20)
-                .foregroundColor(viewModel.textColor())
+                .foregroundColor(.whiteColor())
             
             Text(viewModel.user.username)
-                .foregroundColor(viewModel.textColor())
+                .foregroundColor(.whiteColor())
                 .font(.semiBold(16))
             
             Spacer()
             
-            HStack(spacing: 9) {
+            HStack(spacing: .Constants.spacing) {
                 subscribeButton
                 searchButton(height: 30)
             }
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal, .Constants.horizontalPadding)
         .offset(y: 140)
         .offset(y: viewModel.titleOffset > 100 ? 0 : -viewModel.getTitleTextOffset())
         .opacity(viewModel.titleOffset < 100 ? 1 : 0)
@@ -86,14 +86,14 @@ struct ProfileView: View {
             if viewModel.user.isSubscribe {
                 SmallSpecialButton(
                     icon: Image.Icon.subUserFill(),
-                    color: viewModel.textColor(),
+                    color: .whiteColor(),
                     size: 30) {
                         print("🐸", "Search")
                     }
             } else {
                 SmallBorderButton(
                     icon: Image.Icon.unsubUser(),
-                    color: viewModel.textColor(),
+                    color: .whiteColor(),
                     imageSize: 11,
                     circleSize: 30) {
                         print("💔", "you are unsubscribe")
@@ -106,7 +106,7 @@ struct ProfileView: View {
     func searchButton(height: CGFloat) -> some View {
         SmallSpecialButton(
             icon: Image.Icon.search(),
-            color: viewModel.textColor(),
+            color: .whiteColor(),
             size: height) {
                 print("🐸", "Search")
             }
@@ -118,9 +118,11 @@ struct ProfileView: View {
         VStack {
             avatarView
             profileData
+            
             Rectangle()
                 .foregroundColor(.init(hex: viewModel.user.separatorColor))
                 .frame(height: 11)
+            
             segmentedMenu
             contentView(viewModel.currentTab)
         }
@@ -129,15 +131,15 @@ struct ProfileView: View {
     
     var avatarView: some View {
         Group {
-            if let avatar = viewModel.user.avatar {
-                Image(avatar)
+            if viewModel.user.isAvatarVisible {
+                Image(viewModel.user.avatar) //TODO: Shape
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 110)
                     .clipShape(Circle())
                     .padding(2)
                     .background(
-                        viewModel.textColor()
+                        Color.globalColor()
                     )
                     .clipShape(Circle())
                     .offset(y: viewModel.offset < 0 ? viewModel.getOffset() - 1 : -1)
@@ -173,7 +175,7 @@ struct ProfileView: View {
                 buttonsForUnsubscribeUsers
             }
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal, .Constants.horizontalPadding)
         .overlay(
             GeometryReader { proxy -> Color in
                 viewModel.findMinYForTitleOffset(proxy)
@@ -189,7 +191,7 @@ struct ProfileView: View {
     var buttonsForSubscribeUsers: some View {
         Group {
             if viewModel.user.allowMessages {
-                HStack(spacing: 9) {
+                HStack(spacing: .Constants.spacing) {
                     BigButton(
                         text: .message,
                         icon: Image.Icon.message(),
@@ -206,7 +208,7 @@ struct ProfileView: View {
                     moreButton
                 }
             } else {
-                HStack(spacing: 9) {
+                HStack(spacing: .Constants.spacing) {
                     BigButton(
                         text: .unsubscribe,
                         icon: Image.Icon.subUser(),
@@ -221,7 +223,7 @@ struct ProfileView: View {
     }
     
     var buttonsForUnsubscribeUsers: some View {
-        HStack(spacing: 9) {
+        HStack(spacing: .Constants.spacing) {
             BigButton(
                 text: .subscribe,
                 icon: Image.Icon.unsubUser(),
@@ -260,7 +262,7 @@ struct ProfileView: View {
                         HStack(spacing: 0) {
                             ForEach(viewModel.user.segments, id: \.self) { segment in
                                 TabButtonView(title: segment, currentTab: $viewModel.currentTab, animation: animation)
-                                    .padding(.top, 10)
+                                    .padding(.top, 7)
                             }
                         }
                         .animation(.spring(), value: viewModel.currentTab)
@@ -288,8 +290,8 @@ struct ProfileView: View {
     @ViewBuilder
     func contentView(_ tab: Segment) -> some View {
         switch tab {
-        case .feed:
-            feedView
+        case .posts:
+            postsView
         case .environment:
             Text("environment")
         case .saved:
@@ -299,8 +301,14 @@ struct ProfileView: View {
         }
     }
     
-    var feedView: some View {
+    //MARK: - postsView
+    
+    var postsView: some View {
         VStack(spacing: 18) {
+            if viewModel.user.isTopicFoldersVisible {
+                TopicFoldersView(folders: viewModel.user.topicFolders)
+            }
+            
             ForEach(1...10, id: \.self) { _ in
                 Rectangle()
                     .frame(height: 50)

@@ -18,24 +18,29 @@ extension ProfileView {
             allowMessages: true,
             isSubscribe: false,
             avatar: "person",
+            avatarShape: .circle,
+            isAvatarVisible: true,
             cover: "cover",
-            textColor: .white,
+            textColor: .dark,
+            navButtonColor: .white,
             backgroundColor: "BFC2FF",
             separatorColor: "9FA3E2",
-            segments: [.feed, .environment, .saved, .music]
+            segments: [.posts, .environment, .saved, .music],
+            topicFolders: [TopicFolder(title: "Мои работы", coverUrl: "person"), TopicFolder(title: "Туториалы", coverUrl: "person"), TopicFolder(title: "Материалы", coverUrl: "person")],
+            isTopicFoldersVisible: true
         )
         
-        @Published var currentTab: Segment = .feed
+        @Published var currentTab: Segment = .posts
         @Published var offset: CGFloat = 0
         @Published var tabBarOffset: CGFloat = 0
         @Published var titleOffset: CGFloat = 0
         
-        func textColor() -> Color {
-            switch user.textColor {
-            case .dark:
-                return .black
-            case .white:
-                return .white
+        func avatarShape() -> any Shape {
+            switch user.avatarShape {
+            case .circle:
+                return Circle()
+            case .rectangle:
+                return Rectangle()
             }
         }
 

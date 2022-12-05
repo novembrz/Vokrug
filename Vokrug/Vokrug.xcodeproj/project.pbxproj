@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		8709C78E293CDA0500683FD0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8709C78D293CDA0500683FD0 /* ProfileView.swift */; };
 		8709C790293CE1F600683FD0 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8709C78F293CE1F600683FD0 /* ProfileViewModel.swift */; };
+		87302EE1293DD1160033289B /* TopicFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87302EE0293DD1160033289B /* TopicFolder.swift */; };
+		87302EE3293DD2360033289B /* TopicFoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87302EE2293DD2360033289B /* TopicFoldersView.swift */; };
+		87302EE5293DD7B10033289B /* CommonValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87302EE4293DD7B10033289B /* CommonValues.swift */; };
 		876842C8293D016300AA5C00 /* View + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876842C7293D016300AA5C00 /* View + Extension.swift */; };
 		878C7B51293B9275000D1E17 /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878C7B50293B9275000D1E17 /* BigButton.swift */; };
 		878C7B53293B931D000D1E17 /* SmallBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878C7B52293B931D000D1E17 /* SmallBorderButton.swift */; };
@@ -38,6 +41,9 @@
 /* Begin PBXFileReference section */
 		8709C78D293CDA0500683FD0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		8709C78F293CE1F600683FD0 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		87302EE0293DD1160033289B /* TopicFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicFolder.swift; sourceTree = "<group>"; };
+		87302EE2293DD2360033289B /* TopicFoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicFoldersView.swift; sourceTree = "<group>"; };
+		87302EE4293DD7B10033289B /* CommonValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonValues.swift; sourceTree = "<group>"; };
 		876842C7293D016300AA5C00 /* View + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Extension.swift"; sourceTree = "<group>"; };
 		878C7B50293B9275000D1E17 /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
 		878C7B52293B931D000D1E17 /* SmallBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallBorderButton.swift; sourceTree = "<group>"; };
@@ -77,6 +83,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		87302EDF293DC7EF0033289B /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
 		87C76DA7293A8FBC000FA6DD = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +134,7 @@
 			children = (
 				8709C78D293CDA0500683FD0 /* ProfileView.swift */,
 				8709C78F293CE1F600683FD0 /* ProfileViewModel.swift */,
+				87302EE2293DD2360033289B /* TopicFoldersView.swift */,
 				87C76DC3293A943C000FA6DD /* BlurView.swift */,
 			);
 			path = Profile;
@@ -130,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				87C76DC9293A9C86000FA6DD /* User.swift */,
+				87302EE0293DD1160033289B /* TopicFolder.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -137,6 +152,7 @@
 		87C76DCB293AA006000FA6DD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				87302EE4293DD7B10033289B /* CommonValues.swift */,
 				87C76DCC293AA013000FA6DD /* HexColor.swift */,
 				87C76DCE293B6A2E000FA6DD /* Color + Extension.swift */,
 				87C76DE4293B6AB5000FA6DD /* Font + Extension.swift */,
@@ -174,6 +190,7 @@
 		87C76E0B293B8C4C000FA6DD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				87302EDF293DC7EF0033289B /* Feed */,
 				87C76DC7293A9C4F000FA6DD /* Profile */,
 				87C76E0C293B8C65000FA6DD /* Common views */,
 			);
@@ -278,11 +295,14 @@
 				876842C8293D016300AA5C00 /* View + Extension.swift in Sources */,
 				87C76DE8293B6D71000FA6DD /* Image + Extension.swift in Sources */,
 				87C76DCF293B6A2E000FA6DD /* Color + Extension.swift in Sources */,
+				87302EE1293DD1160033289B /* TopicFolder.swift in Sources */,
 				87C76DC4293A943C000FA6DD /* BlurView.swift in Sources */,
 				87C76DE5293B6AB5000FA6DD /* Font + Extension.swift in Sources */,
+				87302EE3293DD2360033289B /* TopicFoldersView.swift in Sources */,
 				87C76DCA293A9C86000FA6DD /* User.swift in Sources */,
 				87C76E0E293B8C88000FA6DD /* SmallSpecialButton.swift in Sources */,
 				878C7B51293B9275000D1E17 /* BigButton.swift in Sources */,
+				87302EE5293DD7B10033289B /* CommonValues.swift in Sources */,
 				8709C790293CE1F600683FD0 /* ProfileViewModel.swift in Sources */,
 				87C76DB4293A8FBC000FA6DD /* VokrugApp.swift in Sources */,
 				878C7B55293B97B4000D1E17 /* SmallButton.swift in Sources */,
